@@ -18,9 +18,14 @@
         on = opam-nix.lib.${system};
         localPackagesQuery = builtins.mapAttrs (_: pkgs.lib.last) (on.listRepo (on.makeOpamRepo ./.));
         devPackagesQuery = {
-          # You can add "development" packages here. They will get added to the devShell automatically.
+          utop = "*";
           ocaml-lsp-server = "*";
           ocamlformat = "*";
+
+          ounit2 = "*";
+          qcheck = "*";
+          calendar = "*";
+          ppx_deriving = "*";
         };
         query = devPackagesQuery // {
           ## You can force versions of certain packages here, e.g:

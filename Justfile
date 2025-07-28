@@ -6,3 +6,8 @@
 
 @watch:
 	dune build --watch
+
+git-commit MESSAGE:
+    git add .
+    git commit -m "{{MESSAGE}}"
+    git push
