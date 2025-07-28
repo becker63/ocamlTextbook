@@ -1,11 +1,12 @@
 @build:
 	dune build
 
-@run: build
-	dune exec ./bin/main.exe
+@update-dune:
+	sh -c "find bin -maxdepth 1 -type f -name '*.ml' | while read f; do basename \"\$f\" .ml; done | awk 'BEGIN { print \"(executables\n (names\" } { print \"  \" \$0 } END { print \"))\" }' > bin/dune"
 
-@watch:
-	dune build --watch
+@run file: update-dune build
+	dune exec ./bin/$(basename $(basename {{file}} .ml)).exe
+
 
 git-commit MESSAGE:
     git add .

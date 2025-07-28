@@ -1,2 +1,5 @@
-(executable
- (name main))
+(executables
+ (names
+  ifStatements
+  coolTernaryLike
+))
